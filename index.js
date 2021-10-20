@@ -9,7 +9,8 @@ clipboardListener.startListening();
 
 const folder = 'clipboard-sync'
 
-let lastText
+let lastText = ''
+let lastTimeWritten = ''
 
 clipboardListener.on('change', () => {
     const text = clipboard.readSync();
@@ -18,7 +19,8 @@ clipboardListener.on('change', () => {
         return
     }
 
-    const timestamp = Date.now()
+    const timestamp = Date.now().toString()
+    lastTimeWritten = timestamp
     const file = path.join(folder, `${timestamp}.txt`);
     console.log(`Writing clipboard to ${file}`);
 
@@ -27,8 +29,8 @@ clipboardListener.on('change', () => {
     });
 });
 
-chokidar.watch(folder, {
-    ignoreInitial: true
+chokidar.watch('folder/*.txt', {
+    ignoreInitial: true,
 }).on('add', (path) => {
     const currentText = clipboard.readSync();
     const newText = fs.readFileSync(path, {
@@ -38,6 +40,10 @@ chokidar.watch(folder, {
     if (newText && currentText !== newText) {
         console.log(`Reading clipboard from ${path}`);
         lastText = newText
+        const timestamp = path.replace(/^*.txt/, '')
+        if (lastTimeWritten && timestamp <= lastTimeWritten) {
+            return
+        }
         clipboard.writeSync(newText);
     }
 });
