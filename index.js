@@ -8,6 +8,10 @@ import path from "path";
 
 const folder = "clipboard-sync-preview";
 
+if (!fs.existsSync(folder)) {
+  fs.mkdirSync(folder);
+}
+
 let lastTextWritten = "";
 let lastTimeWritten = "";
 
