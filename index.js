@@ -1,11 +1,12 @@
+#!/usr/bin/env node
+
 import clipboardListener from "clipboard-event";
 import clipboard from "clipboardy";
 import chokidar from "chokidar";
 import fs from "fs";
 import path from "path";
-import { stderr } from "process";
 
-const folder = "clipboard-sync";
+const folder = "clipboard-sync-preview";
 
 let lastTextWritten = "";
 let lastTimeWritten = "";

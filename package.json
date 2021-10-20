@@ -5,13 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "electron .",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Felipe Santos <felipecassiors@gmail.com>",
   "license": "MIT",
   "files": [],
+  "bin": "index.js",
   "dependencies": {
     "chokidar": "^3.5.2",
     "clipboard-event": "^1.5.0",
