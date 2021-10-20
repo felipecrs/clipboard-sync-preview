@@ -29,7 +29,7 @@ clipboardListener.on('change', () => {
     });
 });
 
-chokidar.watch('folder/*.txt', {
+chokidar.watch(`${folder}/*.txt`, {
     ignoreInitial: true,
 }).on('add', (path) => {
     const currentText = clipboard.readSync();
