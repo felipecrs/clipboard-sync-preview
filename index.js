@@ -35,16 +35,16 @@ clipboardListener.on('change', () => {
 
 chokidar.watch(`${folder}/*.txt`, {
     ignoreInitial: true,
-}).on('add', (path) => {
+}).on('add', (filePath) => {
     const currentText = clipboard.readSync();
-    const newText = fs.readFileSync(path, {
+    const newText = fs.readFileSync(filePath, {
         encoding: 'utf8'
     })
 
     if (newText && currentText !== newText) {
-        console.log(`Reading clipboard from ${path}`);
+        console.log(`Reading clipboard from ${filePath}`);
         lastTextRead = newText
-        const timestamp = path.replace(/^*.txt/, '')
+        const timestamp = path.parse(filePath).name
         if (lastTimeWritten && timestamp <= lastTimeWritten) {
             return
         }
