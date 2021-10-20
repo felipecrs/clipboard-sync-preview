@@ -2,6 +2,10 @@
 
 A very simple tool which helps to sync the clipboard between computers by relying on a shared folder.
 
+## Demo
+
+https://user-images.githubusercontent.com/29582865/138028220-29755211-ab79-45dc-acac-9a14431c03d4.mp4
+
 ## Get started
 
 Install with:
